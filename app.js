@@ -1,11 +1,16 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 
 const PORT_NUMBER = 8080;
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-  res.write('<h1>Hello World</h1>');
-  res.end();
+app.get('/', (req, res) => {
+  res.send('<h1>ROOT</h1>');
+})
+
+app.get('/test', (req, res) => {
+  res.send('<h1>TEST</h1>');
 });
-server.listen(PORT_NUMBER);
-console.log('Server listen on Port: ' + PORT_NUMBER);
+
+app.listen(PORT_NUMBER, () => {
+  console.log('Server listen on ' + PORT_NUMBER);
+})
